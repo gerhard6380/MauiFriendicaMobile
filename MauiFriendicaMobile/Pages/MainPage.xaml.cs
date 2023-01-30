@@ -35,25 +35,33 @@ public partial class MainPage : ContentPage
 			{
 				case "System default language":
 					culture = CultureInfo.CurrentCulture;
-					break;
+					// TODO: sollen wir Preferences nochmal in einen Helper kapseln? Get mit Default könnte öfters verwendet werden)
+					Preferences.Set("Language", "default");
+                    break;
 				case "German":
-					culture = new CultureInfo("de");
-					break;
+					culture = new CultureInfo("de"); 
+					Preferences.Set("Language", "de");
+                    break;
 				case "Spanish":
 					culture = new CultureInfo("es");
-					break;
+                    Preferences.Set("Language", "es");
+                    break;
                 case "French":
                     culture = new CultureInfo("fr");
+                    Preferences.Set("Language", "fr");
                     break;
                 case "Italian":
                     culture = new CultureInfo("it");
+                    Preferences.Set("Language", "it");
                     break;
                 case "Portuguese":
 					culture = new CultureInfo("pt");
-					break;
+                    Preferences.Set("Language", "pt");
+                    break;
                 case "English":
 				default:
                     culture = new CultureInfo("en");
+                    Preferences.Set("Language", "en");
                     break;
             }
 			LocalizationResourceManager.Instance.SetCulture(culture);

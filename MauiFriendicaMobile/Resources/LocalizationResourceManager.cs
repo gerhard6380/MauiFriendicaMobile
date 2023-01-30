@@ -7,7 +7,16 @@ namespace FriendicaMobile.Resources
     {
         private LocalizationResourceManager()
         {
-            AppResources.Culture = CultureInfo.CurrentCulture;
+            if (Preferences.ContainsKey("Language"))
+            {
+                var lang = Preferences.Get("Language", "default");
+                if (lang == "default")
+                    AppResources.Culture = CultureInfo.CurrentCulture;
+                else
+                    AppResources.Culture = new CultureInfo(lang);
+            }
+            else
+                AppResources.Culture = CultureInfo.CurrentCulture;
         }
 
         public static LocalizationResourceManager Instance { get; } = new();
