@@ -14,15 +14,6 @@ public partial class MainPage : ContentPage
 
 	private void OnCounterClicked(object sender, EventArgs e)
 	{
-
-		// TODO: replace the following by a setting in the SettingsPage
-		var switchToCulture = new CultureInfo("es");
-        if (AppResources.Culture.TwoLetterISOLanguageName.Equals("es", StringComparison.InvariantCultureIgnoreCase))
-			switchToCulture = new CultureInfo("en");
-		else if (AppResources.Culture.TwoLetterISOLanguageName.Equals("en", StringComparison.InvariantCultureIgnoreCase))
-			switchToCulture = new CultureInfo("de");
-		LocalizationResourceManager.Instance.SetCulture(switchToCulture);
-
 		count++;
 
 		if (count == 1)
@@ -31,6 +22,42 @@ public partial class MainPage : ContentPage
 			CounterBtn.Text = LocalizationResourceManager.Instance["SettingsPageTitle"].ToString();
 
 		SemanticScreenReader.Announce(CounterBtn.Text);
+	}
+
+    private void LanguagePicker_SelectedIndexChanged(object sender, EventArgs e)
+    {
+		// TODO: move this into SettingsPage
+		var picker = sender as Picker;
+		CultureInfo culture;
+		if (picker != null)
+		{
+			switch (picker.SelectedItem)
+			{
+				case "System default language":
+					culture = CultureInfo.CurrentCulture;
+					break;
+				case "German":
+					culture = new CultureInfo("de");
+					break;
+				case "Spanish":
+					culture = new CultureInfo("es");
+					break;
+                case "French":
+                    culture = new CultureInfo("fr");
+                    break;
+                case "Italian":
+                    culture = new CultureInfo("it");
+                    break;
+                case "Portuguese":
+					culture = new CultureInfo("pt");
+					break;
+                case "English":
+				default:
+                    culture = new CultureInfo("en");
+                    break;
+            }
+			LocalizationResourceManager.Instance.SetCulture(culture);
+        }
 	}
 }
 

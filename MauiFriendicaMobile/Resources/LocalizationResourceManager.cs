@@ -12,6 +12,7 @@ namespace FriendicaMobile.Resources
 
         public static LocalizationResourceManager Instance { get; } = new();
 
+        // non existing strings for a language will result in returning the neutral language (English)
         public object this[string resourceKey]
             => AppResources.ResourceManager.GetObject(resourceKey, AppResources.Culture) ?? Array.Empty<byte>();
 

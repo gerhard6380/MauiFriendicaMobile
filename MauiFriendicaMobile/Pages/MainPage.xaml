@@ -36,6 +36,22 @@
                 Clicked="OnCounterClicked"
                 HorizontalOptions="Center" />
 
+            <!-- TODO: move this to SettingsPage-->
+            <Picker x:Name="LanguagePicker" Title="Select a language"
+                    SelectedIndexChanged="LanguagePicker_SelectedIndexChanged">
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>System default language</x:String>
+                        <x:String>English</x:String>
+                        <x:String>German</x:String>
+                        <x:String>Spanish</x:String>
+                        <x:String>Portuguese</x:String>
+                        <x:String>Italian</x:String>
+                        <x:String>French</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
+
         </VerticalStackLayout>
     </ScrollView>
 
